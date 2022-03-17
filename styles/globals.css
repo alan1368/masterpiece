@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.IT {
+  @apply text-lg text-orange-500;
+}
+
+p[class='TV Show'] {
+  @apply text-lg text-purple-500;
+}
