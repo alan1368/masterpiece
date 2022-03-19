@@ -9,9 +9,9 @@ export default function Post(props) {
       <div className="relative mr-5 overflow-hidden rounded shadow-[2px_2px_5px_#2e2e2e83]">
         <Image src={props.image} alt="" layout="fill" />
       </div>
-      <div className="h-full w-96 text-gray-700">
+      <div className="w-96 text-gray-700">
         <p className={props.color}>{props.category}</p>
-        <h1 className="py-2 text-3xl">{props.title}</h1>
+        <h1 className="py-1 text-3xl">{props.title}</h1>
         <p className="font-light">
           {props.description}
           <Link href={`/post/${props.slug}`}>
@@ -21,7 +21,7 @@ export default function Post(props) {
             </span>
           </Link>
         </p>
-        <p className="mt-12">
+        <p className="mt-8">
           By <span className="font-bold">{props.author}</span>
         </p>
       </div>

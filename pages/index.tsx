@@ -13,7 +13,6 @@ export function urlFor(source) {
 }
 
 const Home: NextPage = ({ posts }) => {
-  console.log(posts[0].category)
   return (
     <>
       <Head>

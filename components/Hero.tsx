@@ -1,7 +1,7 @@
 export default function Hero() {
   return (
-    <div className="mx-auto flex max-w-7xl items-center justify-evenly border-y-2 border-gray-200 bg-green-100 sm:pt-5">
-      <div className="sm:hidden md:inline-flex">
+    <div className="mx-auto flex max-w-7xl items-center justify-evenly border-y-2 border-gray-200 bg-green-100 p-5">
+      <div className="hidden sm:hidden md:inline-flex">
         <img src="/note.svg" alt="note" className="" />
       </div>
       <div className="mb-12 flex flex-col gap-y-3 font-serif text-gray-500">
