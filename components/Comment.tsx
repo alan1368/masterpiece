@@ -8,16 +8,11 @@ export default function Comment(props) {
       />
       <div className="mx-auto w-9/12 ">
         <div className="mb-4 flex justify-between ">
-          <h2 className="font-normal">alan</h2>
+          <h2 className="font-normal">{props.name}</h2>
           <p className="font-thin">{props.date}</p>
         </div>
 
-        <p className="font-light">
-          bästa artikeln någonsin.. Thanks its working but now when I change to
-          another link the border color is still there it is not getting updated
-          on its own. I have 5 other list elements with the sane condition. It
-          is
-        </p>
+        <p className="font-light">{props.comment}</p>
       </div>
     </div>
   )

@@ -51,6 +51,7 @@ const ptComponents = {
   },
 }
 export default function Post({ post }) {
+  console.log(post.comment)
   return (
     <div className="mx-auto flex max-w-7xl flex-col items-center">
       <div className="relative h-[32rem] w-10/12 border-2 border-gray-300">
@@ -75,11 +76,16 @@ export default function Post({ post }) {
       <div className="w-10/12 border-x-2 border-gray-300 px-16">
         <PortableText value={post.body} components={ptComponents} />
       </div>
-      <Form />
+      <Form _id={post._id} />
       <div className="w-7/12  max-w-4xl border p-5 shadow-md">
         <h2 className="mb-5 tracking-wide">Comments</h2>
         {post.comment.map((comment) => (
-          <Comment date={new Date(comment._createdAt).toUTCString()} />
+          <Comment
+            name={comment.name}
+            key={comment._id}
+            date={new Date(comment._createdAt).toUTCString()}
+            comment={comment.text}
+          />
         ))}
       </div>
     </div>
@@ -100,7 +106,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
   const { slug } = context.params
 
-  const query = `*[_type == "post" && slug.current == $slug][0]{title, body, mainImage,"name": author->name, _createdAt,'comment':*[_type=='comment' && post._ref ==^._id]}`
+  const query = `*[_type == "post" && slug.current == $slug][0]{_id,title, body, mainImage,"name": author->name, _createdAt,'comment':*[_type=='comment' && post._ref ==^._id]{name,text,_createdAt}}`
   const post = await client.fetch(query, { slug })
   if (!post) {
     return { notFound: true }

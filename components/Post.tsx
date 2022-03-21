@@ -1,6 +1,14 @@
 import Image from 'next/image'
 import Link from 'next/link'
 export default function Post(props) {
+  function setColor(category) {
+    switch (category) {
+      case 'IT':
+        return 'text-orange-500'
+      case 'TV Show':
+        return 'text-purple-500'
+    }
+  }
   return (
     <div
       className="
@@ -10,19 +18,24 @@ export default function Post(props) {
         <Image src={props.image} alt="" layout="fill" />
       </div>
       <div className="w-96 text-gray-700">
-        <p className={props.color}>{props.category}</p>
-        <h1 className="py-1 text-3xl">{props.title}</h1>
+        <p className={`${setColor(props.category)} font-mono text-sm`}>
+          {props.category}
+        </p>
+        <h1 className="py-1 text-2xl">{props.title}</h1>
         <p className="font-light">
           {props.description}
           <Link href={`/post/${props.slug}`}>
             <span className="ml-1 text-red-300 hover:cursor-pointer">
               {' '}
-              Read More
+              Read More...
             </span>
           </Link>
         </p>
         <p className="mt-8">
-          By <span className="font-bold">{props.author}</span>
+          By{' '}
+          <span className="font-semibold tracking-wide text-stone-500">
+            {props.author}
+          </span>
         </p>
       </div>
     </div>

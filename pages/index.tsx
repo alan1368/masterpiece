@@ -32,7 +32,6 @@ const Home: NextPage = ({ posts }) => {
               slug={post.slug.current}
               author={post.name}
               description={post.description}
-              color={post.category}
             />
           )
         })}

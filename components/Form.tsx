@@ -1,12 +1,23 @@
 import { useForm } from 'react-hook-form'
 
-export default function Form() {
+export default function Form({ _id }) {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm()
-  const onSubmit = (data) => console.log(data)
+
+  interface dataObject {
+    name: string
+    email: string
+    text: string
+  }
+  const onSubmit = async (data: dataObject) => {
+    fetch('/api/createComment', {
+      method: 'POST',
+      body: JSON.stringify({ ...data, _id }),
+    })
+  }
   return (
     <div className="mt-20 w-7/12  max-w-4xl ">
       <h2 className=" my-5 text-xl text-gray-500">
@@ -23,7 +34,7 @@ export default function Form() {
         />
         <input
           {...register('email', { required: true })}
-          type="text"
+          type="email"
           placeholder="Email Address"
           className="my-5 h-14 w-full overflow-hidden rounded-md  bg-slate-100 px-5 text-xl text-gray-500"
         />
