@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Hero from '../components/Hero'
-import client from '../lib/client'
+import client from '../lib/client.js'
 import Post from '../components/Post'
 import imageUrlBuilder from '@sanity/image-url'
 
