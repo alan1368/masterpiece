@@ -1,4 +1,4 @@
-//import type { NextPage } from 'next'
+import type { NextPage } from 'next'
 import Head from 'next/head'
 import Hero from '../components/Hero'
 import sanityClient from '../lib/client'
@@ -6,11 +6,11 @@ import Post from '../components/Post'
 import imageUrlBuilder from '@sanity/image-url'
 
 const builder = imageUrlBuilder(sanityClient)
-export function urlFor(source) {
+export function urlFor(source: any) {
   return builder.image(source)
 }
 
-const Home = ({ posts }) => {
+const Home: NextPage = ({ posts }: any) => {
   return (
     <>
       <Head>
@@ -19,7 +19,7 @@ const Home = ({ posts }) => {
       </Head>
       <Hero />
       <div className="mx-auto mt-5 flex w-11/12 max-w-7xl flex-col items-start">
-        {posts.map((post) => {
+        {posts.map((post: any) => {
           return (
             <Post
               title={post.title}
