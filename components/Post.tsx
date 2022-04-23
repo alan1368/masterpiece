@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
-export default function Post(props) {
-  function setColor(category) {
+export default function Post(props: any) {
+  function setColor(category: any) {
     switch (category) {
       case 'IT':
         return 'text-orange-500'
@@ -12,12 +12,12 @@ export default function Post(props) {
   return (
     <div
       className="
-     mb-8 grid grid-cols-[18rem_1fr] justify-center gap-x-2"
+     mb-4 grid grid-rows-2 justify-center gap-y-2 md:grid-cols-[18rem_1fr] md:gap-x-2"
     >
       <div className="relative mr-5 overflow-hidden rounded shadow-[2px_2px_5px_#2e2e2e83]">
         <Image src={props.image} alt="" layout="fill" />
       </div>
-      <div className="w-96 text-gray-700">
+      <div className="max-w-lg text-gray-700">
         <p className={`${setColor(props.category)} font-mono text-sm`}>
           {props.category}
         </p>

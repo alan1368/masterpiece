@@ -1,4 +1,4 @@
-export default function Comment(props) {
+export default function Comment(props: any) {
   return (
     <div className="mb-3 flex border p-3">
       <img

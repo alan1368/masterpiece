@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form'
 
-export default function Form({ _id }) {
+export default function Form({ _id }: any) {
   const {
     register,
     handleSubmit,

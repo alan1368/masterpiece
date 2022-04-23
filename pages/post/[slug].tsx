@@ -9,7 +9,7 @@ import Comment from '../../components/Comment'
 
 const builder = imageUrlBuilder(client)
 
-export function urlFor(source) {
+export function urlFor(source: any) {
   return builder.image(source)
 }
 const ptComponents = {
@@ -29,41 +29,40 @@ const ptComponents = {
     },
   },
   block: {
-    h1: ({ children }) => (
-      <h1 className="mb-9 text-4xl text-neutral-600">{children}</h1>
+    h1: ({ children }: any) => (
+      <h1 className="mb-9 text-2xl text-neutral-600 md:text-4xl">{children}</h1>
     ),
-    h2: ({ children }) => (
+    h2: ({ children }: any) => (
       <h2 className="my-5 text-xl font-bold text-neutral-600">{children}</h2>
     ),
-    normal: ({ children }) => (
+    normal: ({ children }: any) => (
       <p className="max-w-7xl text-xl leading-loose text-neutral-600">
         {children}
       </p>
     ),
-    blockquote: ({ children }) => (
+    blockquote: ({ children }: any) => (
       <blockquote className="text-xl text-neutral-600">{children}</blockquote>
     ),
   },
   list: {
-    bullet: ({ children }) => (
+    bullet: ({ children }: any) => (
       <ul className="mt-xl list-disc text-neutral-600">{children}</ul>
     ),
   },
 }
-export default function Post({ post }) {
+export default function Post({ post }: any) {
   console.log(post.comment)
   return (
     <div className="mx-auto flex max-w-7xl flex-col items-center">
-      <div className="relative h-[32rem] w-10/12 border-2 border-gray-300">
+      <div className="relative h-40 w-4/5 md:h-[32rem] md:w-10/12">
         <Image
           src={post.mainImage ? urlFor(post.mainImage).url() : '/post.svg'}
           alt=""
           // width={1000}
           // height={600}
           layout="fill"
-          objectFit="cover"
-          className=""
-          objectPosition="right"
+          objectFit="contain"
+          className="border-4 border-orange-700"
         />
       </div>
       <div className="mb-24 mt-12 flex h-[8rem] w-10/12 flex-col items-center justify-between text-gray-500">
@@ -73,7 +72,7 @@ export default function Post({ post }) {
           {new Date(post._createdAt).toUTCString()}
         </h2>
       </div>
-      <div className="w-10/12 border-x-2 border-gray-300 px-16">
+      <div className="w-10/12 border-x-2 border-gray-300 px-2 md:px-16">
         <PortableText value={post.body} components={ptComponents} />
       </div>
       <Form _id={post._id} />
@@ -94,7 +93,7 @@ export default function Post({ post }) {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const posts = await client.fetch(`*[_type == "post"]{_id, slug{current}}`)
-  const paths = posts.map((post) => ({
+  const paths = posts.map((post: any) => ({
     params: { slug: post.slug.current },
   }))
 

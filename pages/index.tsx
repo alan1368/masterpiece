@@ -8,7 +8,7 @@ import Post from '../components/Post'
 import imageUrlBuilder from '@sanity/image-url'
 
 const builder = imageUrlBuilder(client)
-export function urlFor(source) {
+export function urlFor(source: any) {
   return builder.image(source)
 }
 
@@ -20,8 +20,8 @@ const Home: NextPage = ({ posts }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Hero />
-      <div className="mx-auto mt-5 flex h-screen w-11/12 max-w-7xl flex-col items-start">
-        {posts.map((post) => {
+      <div className="mx-auto mt-5 flex w-11/12 max-w-7xl flex-col items-start">
+        {posts.map((post: any) => {
           return (
             <Post
               title={post.title}
