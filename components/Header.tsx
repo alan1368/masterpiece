@@ -6,7 +6,7 @@ export default function Header() {
         <div className="flex items-center hover:cursor-pointer">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="h-10 w-10"
+            className="h-10 w-10"
             viewBox="0 0 20 20"
             fill="currentColor"
             color="green"
