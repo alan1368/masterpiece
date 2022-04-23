@@ -41,8 +41,8 @@ export default function Form({ _id }: any) {
         <textarea
           {...register('text', { required: true })}
           id=""
-          cols="30"
-          rows="8"
+          cols={30}
+          rows={8}
           placeholder="Your Comment"
           className="overflow-hidden rounded-md bg-slate-100 p-5 text-xl text-gray-500"
         />
