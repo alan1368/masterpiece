@@ -20,7 +20,8 @@
     "./node_modules/@sanity/base/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx",
-    "pages/index.js"
+    "pages/index.js",
+    "pages/post/[slug].js"
   ],
   "exclude": ["node_modules"]
 }

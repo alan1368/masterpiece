@@ -1,5 +1,3 @@
-import { GetStaticPaths, GetStaticProps } from 'next'
-
 import Image from 'next/image'
 import sanityClient from '../../lib/client'
 import imageUrlBuilder from '@sanity/image-url'
@@ -9,12 +7,12 @@ import Comment from '../../components/Comment'
 
 const builder = imageUrlBuilder(sanityClient)
 
-export function urlFor(source: any) {
+export function urlFor(source) {
   return builder.image(source)
 }
 const ptComponents = {
   types: {
-    image: ({ value }: any) => {
+    image: ({ value }) => {
       if (!value?.asset?._ref) {
         return null
       }
@@ -29,28 +27,28 @@ const ptComponents = {
     },
   },
   block: {
-    h1: ({ children }: any) => (
+    h1: ({ children }) => (
       <h1 className="mb-9 text-2xl text-neutral-600 md:text-4xl">{children}</h1>
     ),
-    h2: ({ children }: any) => (
+    h2: ({ children }) => (
       <h2 className="my-5 text-xl font-bold text-neutral-600">{children}</h2>
     ),
-    normal: ({ children }: any) => (
+    normal: ({ children }) => (
       <p className="max-w-7xl text-xl leading-loose text-neutral-600">
         {children}
       </p>
     ),
-    blockquote: ({ children }: any) => (
+    blockquote: ({ children }) => (
       <blockquote className="text-xl text-neutral-600">{children}</blockquote>
     ),
   },
   list: {
-    bullet: ({ children }: any) => (
+    bullet: ({ children }) => (
       <ul className="mt-xl list-disc text-neutral-600">{children}</ul>
     ),
   },
 }
-export default function Post({ post }: any) {
+export default function Post({ post }) {
   console.log(post.comment)
   return (
     <div className="mx-auto flex max-w-7xl flex-col items-center">
@@ -78,7 +76,7 @@ export default function Post({ post }: any) {
       <Form _id={post._id} />
       <div className="w-7/12  max-w-4xl border p-5 shadow-md">
         <h2 className="mb-5 tracking-wide">Comments</h2>
-        {post.comment.map((comment: any) => (
+        {post.comment.map((comment) => (
           <Comment
             name={comment.name}
             key={comment._id}
@@ -91,11 +89,11 @@ export default function Post({ post }: any) {
   )
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths = async () => {
   const posts = await sanityClient.fetch(
     `*[_type == "post"]{_id, slug{current}}`
   )
-  const paths = posts.map((post: any) => ({
+  const paths = posts.map((post) => ({
     params: { slug: post.slug.current },
   }))
 
@@ -104,7 +102,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     fallback: 'blocking',
   }
 }
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps = async (context) => {
   const slug = context.params?.slug
 
   const query = `*[_type == "post" && slug.current == $slug][0]{_id,title, body, mainImage,"name": author->name, _createdAt,'comment':*[_type=='comment' && post._ref ==^._id]{name,text,_createdAt}}`
