@@ -1,11 +1,11 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Hero from '../components/Hero'
-import client from '../lib/client.js'
+import sanityClient from '../lib/client'
 import Post from '../components/Post'
 import imageUrlBuilder from '@sanity/image-url'
 
-const builder = imageUrlBuilder(client)
+const builder = imageUrlBuilder(sanityClient)
 export function urlFor(source: any) {
   return builder.image(source)
 }
@@ -41,7 +41,7 @@ const Home: NextPage = ({ posts }: any) => {
 export default Home
 
 export async function getStaticProps() {
-  const posts = await client.fetch(
+  const posts = await sanityClient.fetch(
     '*[_type == "post"]{title, body, mainImage, slug,"name": author->name, description, "category":categories[0]->title}'
   )
   return {

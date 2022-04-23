@@ -1,13 +1,13 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
 
 import Image from 'next/image'
-import client from '../../lib/client'
+import sanityClient from '../../lib/client'
 import imageUrlBuilder from '@sanity/image-url'
 import { PortableText } from '@portabletext/react'
 import Form from '../../components/Form'
 import Comment from '../../components/Comment'
 
-const builder = imageUrlBuilder(client)
+const builder = imageUrlBuilder(sanityClient)
 
 export function urlFor(source: any) {
   return builder.image(source)
@@ -78,7 +78,7 @@ export default function Post({ post }: any) {
       <Form _id={post._id} />
       <div className="w-7/12  max-w-4xl border p-5 shadow-md">
         <h2 className="mb-5 tracking-wide">Comments</h2>
-        {post.comment.map((comment) => (
+        {post.comment.map((comment: any) => (
           <Comment
             name={comment.name}
             key={comment._id}
@@ -92,7 +92,9 @@ export default function Post({ post }: any) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = await client.fetch(`*[_type == "post"]{_id, slug{current}}`)
+  const posts = await sanityClient.fetch(
+    `*[_type == "post"]{_id, slug{current}}`
+  )
   const paths = posts.map((post: any) => ({
     params: { slug: post.slug.current },
   }))
@@ -106,7 +108,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const slug = context.params?.slug
 
   const query = `*[_type == "post" && slug.current == $slug][0]{_id,title, body, mainImage,"name": author->name, _createdAt,'comment':*[_type=='comment' && post._ref ==^._id]{name,text,_createdAt}}`
-  const post = await client.fetch(query, { slug })
+  const post = await sanityClient.fetch(query, { slug })
   if (!post) {
     return { notFound: true }
   }
