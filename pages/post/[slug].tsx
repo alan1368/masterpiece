@@ -103,7 +103,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 export const getStaticProps: GetStaticProps = async (context) => {
-  const { slug } = context.params?
+  const slug = context.params?.slug
 
   const query = `*[_type == "post" && slug.current == $slug][0]{_id,title, body, mainImage,"name": author->name, _createdAt,'comment':*[_type=='comment' && post._ref ==^._id]{name,text,_createdAt}}`
   const post = await client.fetch(query, { slug })

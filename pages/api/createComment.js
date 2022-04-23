@@ -1,9 +1,5 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
 import client from '../../lib/client'
-export default async function createComment(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export default async function createComment(req, res) {
   const { name, email, text, _id } = JSON.parse(req.body)
   client?.create({
     _type: 'comment',
