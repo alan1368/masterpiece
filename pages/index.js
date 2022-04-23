@@ -1,9 +1,9 @@
 //import type { NextPage } from 'next'
 import Head from 'next/head'
 import Hero from '../components/Hero'
-import sanityClient from '../lib/client'
 import Post from '../components/Post'
 import imageUrlBuilder from '@sanity/image-url'
+import sanityClient from '/client'
 
 const builder = imageUrlBuilder(sanityClient)
 export function urlFor(source) {

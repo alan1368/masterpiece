@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import sanityClient from '../../lib/client'
+import sanityClient from '/client'
 import imageUrlBuilder from '@sanity/image-url'
 import { PortableText } from '@portabletext/react'
 import Form from '../../components/Form'
