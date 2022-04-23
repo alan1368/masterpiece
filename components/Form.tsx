@@ -12,7 +12,7 @@ export default function Form({ _id }: any) {
     email: string
     text: string
   }
-  const onSubmit = async (data: dataObject) => {
+  const onSubmit = async (data: any) => {
     fetch('/api/createComment', {
       method: 'POST',
       body: JSON.stringify({ ...data, _id }),
