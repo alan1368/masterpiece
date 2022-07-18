@@ -18,7 +18,24 @@ export default function Header() {
           </h2>
         </div>
       </Link>
-      <div className="flex items-center space-x-4 text-green-600">
+      <div className="md:hidden">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-10 w-10"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+          color="green"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M4 6h16M4 12h16m-7 6h7"
+          />
+        </svg>
+      </div>
+      <div className="hidden items-center space-x-4 text-green-600 md:flex">
         <Link href="">
           <h3 className="hover:cursor-pointer">Sign in</h3>
         </Link>

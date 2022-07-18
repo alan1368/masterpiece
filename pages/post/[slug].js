@@ -34,7 +34,7 @@ const ptComponents = {
       <h2 className="my-5 text-xl font-bold text-neutral-600">{children}</h2>
     ),
     normal: ({ children }) => (
-      <p className="max-w-7xl text-xl leading-loose text-neutral-600">
+      <p className="max-w-7xl text-lg leading-loose text-neutral-600 md:text-xl">
         {children}
       </p>
     ),
@@ -70,11 +70,13 @@ export default function Post({ post }) {
           {new Date(post._createdAt).toUTCString()}
         </h2>
       </div>
-      <div className="w-10/12 border-x-2 border-gray-300 px-2 md:px-16">
+      <div className="mx-auto w-full content-center border-x-2 border-gray-300 px-2 md:px-16">
         <PortableText value={post.body} components={ptComponents} />
       </div>
-      <Form _id={post._id} />
-      <div className="w-7/12  max-w-4xl border p-5 shadow-md">
+      <div className="mx-auto w-full items-center">
+        <Form _id={post._id} className="content-center" />
+      </div>
+      <div className="w-11/12 max-w-4xl  border p-5 shadow-md md:w-7/12">
         <h2 className="mb-5 tracking-wide">Comments</h2>
         {post.comment.map((comment) => (
           <Comment

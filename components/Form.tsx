@@ -19,7 +19,7 @@ export default function Form({ _id }: any) {
     })
   }
   return (
-    <div className="mt-20 w-7/12  max-w-4xl ">
+    <div className="mt-20 w-11/12 max-w-4xl md:w-7/12 ">
       <h2 className=" my-5 text-xl text-gray-500">
         Leave a Comment on this Post
       </h2>
